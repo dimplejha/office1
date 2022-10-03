@@ -9,10 +9,9 @@
   <div class="main">
     <!-- Toggle Bar code -->
     <div class="left1">
-      <div class="float-right"></div>
       <br />
       <div class="">
-        <h1 class="font-bold ml-2">||Layers||</h1>
+        <h1 class="font-bold ml-2">Features</h1>
         <br />
         <table class="">
           <tr>
@@ -20,10 +19,11 @@
             <th>Desc</th>
             <th>Toggle</th>
             <th>Opacity</th>
+            <th>color</th>
             <th>Delete</th>
           </tr>
           <tr v-for="(val, index) in data.mapEvent" :key="val.name">
-            <td>{{ index }} ) {{ val.name }}</td>
+            <td>{{ index }} {{ val.name }}</td>
             <td>{{ val.desc }}</td>
             <td>
               <!--   v-model="info.checkedInfo"
@@ -42,10 +42,11 @@
                 type="range"
                 @change="changeColorOpacity(index)"
                 min="1"
-                max="10"
+                max="5"
                 v-model="info.opacity"
               />
             </td>
+            <td>{{ val.color }}</td>
             <td>
               <a @click="deleteLayer(index)">delete</a>
             </td>
@@ -57,7 +58,7 @@
     <div class="right1">
       <v-map class="w-full h-full" :options="state.map" @loaded="getMapData">
         <div class="zIndex1 bg-red-500 rounded-lg w-5/12" v-show="info.show">
-          <div class="p-2">
+          <div class="form">
             <table class="p-2">
               <tr class="p-1">
                 <td class="p-1">
@@ -430,6 +431,8 @@ function Cancel() {
   info.show = false;
 }
 </script>
+
+
 <style>
 html,
 body {
@@ -451,12 +454,12 @@ body {
 }
 .left1 {
   height: 100vh;
-  width: 20vw;
+  width: 25vw;
   float: left;
 }
 .right1 {
   height: 100vh;
-  width: 80vw;
+  width: 75vw;
   float: right;
   position: relative;
 }
@@ -472,16 +475,22 @@ body {
 .bg-gray {
   background-color: rgb(16, 194, 225);
 }
-.zIndex {
+/* .zIndex {
   position: absolute;
   left: 0px;
   top: 0px;
   z-index: 1;
-}
+} */
 .zIndex1 {
   position: relative;
   left: 300px;
   top: 100px;
   z-index: 1;
+}
+.form {
+  background-color: rgb(84, 91, 121);
+  width: fit-content;
+  padding: 37px;
+  border-radius: 50px;
 }
 </style>
